@@ -1,6 +1,10 @@
 name: Release/test bun-node puppeteer images
 
 on:
+  # TODO: If you @apify employees are reading this, please update it
+  schedule:
+    # Every day at 01:00 UTC
+    - cron: "0 1 * * *"
   workflow_dispatch:
     inputs:
       release_tag:
