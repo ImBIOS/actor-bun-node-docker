@@ -50,6 +50,8 @@ RUN apt-get update \
     && echo '{ "CommandLineFlagSecurityWarningsEnabled": false }' > /etc/opt/chrome/policies/managed/managed_policies.json \
     && echo '{ "ComponentUpdatesEnabled": false }' > /etc/opt/chrome/policies/managed/component_update.json \
     \
+    # Globally disable the update-notifier.
+    && npm config --global set update-notifier false \
     # Cleanup
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /src/*.deb \
