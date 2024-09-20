@@ -1,0 +1,16 @@
+{
+    "description": "Anonymous actor on the Apify platform (with Chrome)",
+    "version": "0.0.1",
+    "license": "UNLICENSED",
+    "main": "main.js",
+    "scripts": {
+        "start": "bun main.js"
+    },
+    "dependencies": {
+        "apify": "APIFY_VERSION",
+        "crawlee": "CRAWLEE_VERSION",
+        "puppeteer": "PUPPETEER_VERSION",
+        "typescript": "^5.4.3"
+    },
+    "repository": {}
+}
