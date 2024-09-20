@@ -39,6 +39,9 @@ module.exports = () => {
             // apify/actor-node-x:20-4.2.0-beta
             // apify/actor-node-x:1-20-4.2.0-beta
             tags.push(
+                `${IMAGE_NAME}:${CURRENT_NODE}-${FRAMEWORK_VERSION}-${RELEASE_TAG}`
+            );
+            tags.push(
                 `${IMAGE_NAME}:${LATEST_BUN}-${CURRENT_NODE}-${FRAMEWORK_VERSION}-${RELEASE_TAG}`
             );
         }
