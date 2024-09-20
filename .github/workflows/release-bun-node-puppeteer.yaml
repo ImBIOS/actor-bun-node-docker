@@ -72,7 +72,7 @@ jobs:
           IS_LATEST_BROWSER_IMAGE: ${{ env.IS_LATEST_BROWSER_IMAGE }}
         with:
           script: |
-            const generateTags = require("./.github/scripts/prepare-node-image-tags.js");
+            const generateTags = require("./.github/scripts/prepare-bun-node-image-tags.js");
             return generateTags();
 
       - name: Set up QEMU
