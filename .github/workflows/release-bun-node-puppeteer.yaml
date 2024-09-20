@@ -10,16 +10,16 @@ on:
     inputs:
       release_tag:
         description: "Tag for the images (e.g.: beta)"
-        required: true
+        required: false
       apify_version:
         description: "Apify SDK version (e.g.: ^1.0.0)"
-        required: true
+        required: false
       crawlee_version:
         description: "Crawlee version (e.g.: ^1.0.0)"
-        required: true
+        required: false
       puppeteer_version:
         description: "Puppeteer version (e.g.: 5.5.0)"
-        required: true
+        required: false
       is_latest_browser_image:
         description: If this is a release of the latest browser image. This gets autofilled by CI in crawlee
         type: boolean
@@ -35,7 +35,7 @@ on:
   pull_request:
 
 env:
-  RELEASE_TAG: ${{ github.event.inputs.release_tag || github.event.client_payload.release_tag || 'CI_TEST' }}
+  RELEASE_TAG: ${{ github.event.inputs.release_tag || github.event.client_payload.release_tag || 'latest' }}
   APIFY_VERSION: ${{ github.event.inputs.apify_version || github.event.client_payload.apify_version }}
   CRAWLEE_VERSION: ${{ github.event.inputs.crawlee_version || github.event.client_payload.crawlee_version }}
   PUPPETEER_VERSION: ${{ github.event.inputs.puppeteer_version || github.event.client_payload.puppeteer_version }}
@@ -95,6 +95,21 @@ jobs:
           max_attempts: 3
           retry_wait_seconds: 60 # wait between retries
           command: cd ${{ matrix.image-name }} && npm i --dry-run
+
+      - name: Set APIFY_VERSION
+        # Only run if the input is not set
+        if: github.event.inputs.apify_version == null
+        run: echo "APIFY_VERSION=$(npm view apify version)" >> $GITHUB_ENV
+
+      - name: Set CRAWLEE_VERSION
+        # Only run if the input is not set
+        if: github.event.inputs.crawlee_version == null
+        run: echo "CRAWLEE_VERSION=$(npm view crawlee version)" >> $GITHUB_ENV
+
+      - name: Set PUPPETEER_VERSION
+        # Only run if the input is not set
+        if: github.event.inputs.puppeteer_version == null
+        run: echo "PUPPETEER_VERSION=$(npm view puppeteer version)" >> $GITHUB_ENV
 
       - name: Build and tag image
         uses: docker/build-push-action@v5
