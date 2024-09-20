@@ -3,6 +3,7 @@ name: Release/test bun-node puppeteer images
 on:
   # TODO: If you @apify employees are reading this, please update it
   schedule:
+    # It's 1 hour after bun-node normally start building
     # Every day at 01:00 UTC
     - cron: "0 1 * * *"
   workflow_dispatch:

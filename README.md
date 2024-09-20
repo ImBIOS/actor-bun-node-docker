@@ -1,10 +1,8 @@
-# Apify base Docker images
-
-Public Docker images for Apify Actor serverless platform (https://docs.apify.com/actor)
+# Fork Apify actor for bun-node Docker images
 
 The sources for the images are present in subdirectories that are named as the corresponding
-Docker image. For example, the `node` directory corresponds to the
-[apify/actor-node](https://hub.docker.com/r/apify/actor-node/) Docker image.
+Docker image. For example, the `bun-node` directory corresponds to the
+[imbios/actor-bun-node-puppeteer-chrome](https://hub.docker.com/r/imbios/actor-bun-node-puppeteer-chrome/) Docker image.
 
 The images are using the following tags:
 
@@ -19,9 +17,9 @@ In order to build and publish a new version of the Docker images,
 open the Actions tab and find the Release Images workflow.
 You can then run the workflow by providing the following inputs:
 
--   A tag, which will be used to tag the image in DockerHub. Typically beta or latest.
--   A version of the `apify` package that should be pre-installed in the images.
--   A version of the `puppeteer` package that should be pre-installed in the images that use Puppeteer.
+- A tag, which will be used to tag the image in DockerHub. Typically beta or latest.
+- A version of the `apify` package that should be pre-installed in the images.
+- A version of the `puppeteer` package that should be pre-installed in the images that use Puppeteer.
 
 ### Adding a new actor image
 
